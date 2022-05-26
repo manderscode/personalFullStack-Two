@@ -20,6 +20,8 @@ var configDB = require('./config/database.js');
 var db
 
 // configuration ===============================================================
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
