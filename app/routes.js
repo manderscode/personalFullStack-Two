@@ -9,7 +9,7 @@ module.exports = function(app, passport, db) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+        db.collection('songList').find().toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
@@ -27,7 +27,9 @@ module.exports = function(app, passport, db) {
 // message board routes ===============================================================
 
     app.post('/messages', (req, res) => {
-      db.collection('messages').insertOne({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
+      let collectName = db.collection('songList')
+      console.log("collectName", collectName)
+      collectName.insertOne({email: req.body.email, name: req.body.name, song: req.body.song, completed: false}, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/profile')
@@ -35,10 +37,10 @@ module.exports = function(app, passport, db) {
     })
 
     app.put('/messages', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+      db.collection('songList')
+      .findOneAndUpdate({name: req.body.name, msg: req.body.song, artist: req.body.artist}, {
         $set: {
-          thumbUp:req.body.thumbUp + 1
+          completed: true
         }
       }, {
         sort: {_id: -1},
@@ -49,23 +51,8 @@ module.exports = function(app, passport, db) {
       })
     })
 
-    app.put('/dislike', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        $set: {
-          thumbUp:req.body.thumbUp - 1
-        }
-      }, {
-        sort: {_id: -1},
-        upsert: true
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-    })
-
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+    app.delete('/submitSong', (req, res) => {
+      db.collection('songList').findOneAndDelete({email: req.body.email, name: req.body.name, song: req.body.song,}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })

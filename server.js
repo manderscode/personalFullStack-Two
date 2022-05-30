@@ -3,8 +3,9 @@
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
+var cors     = require('cors');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 9000;
 const MongoClient = require('mongodb').MongoClient
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -33,6 +34,7 @@ require('./config/passport')(passport); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+app.use(cors()); 
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))

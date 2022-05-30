@@ -1,7 +1,96 @@
-body{
+/* body{
   padding-top:80px;
   word-wrap:break-word;
+  background-image:url("public/img/savage21.jpg");
 }
 img{
   height: 200px;
+} */
+
+body { 
+  background: url("img/bg.webp") no-repeat;
+  background-size: cover;
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Pangolin', cursive;
+  font-family: 'PT Sans', sans-serif;
+}
+
+span.email, span.name { 
+  color:white;
+  
+}
+
+span.song { 
+  color: pink;
+}
+
+.messages { 
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  background-color: rgba(138, 89, 141, 0);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: -10px 8px 0px rgb(196 181 253);
+}
+
+li { 
+  text-align: start;
+  width: fit-content; 
+}
+
+h1, h2, h3, #songReccs { 
+  color: white;
+}
+
+button { 
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 30px;
+  padding: 0px 15px;
+  text-shadow: rgb(0 0 0 / 25%) 0px 3px 8px;
+  background: linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%);
+  transition: all 0.5s ease 0s;
+  /* :hover{
+      box-shadow: rgb(80 63 205 / 50%) 0px 1px 40px;
+      transition: all 0.1s ease 0s;
+  }
+   */
+
+  }
+  :active{
+      box-shadow: inset 0px 3px 7px #3c4fe0;
+      transform: translateY(2px);
+  }
+  
+input { 
+
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 4px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  /* :focus{
+      color: #212529;
+      background-color: #fff;
+      border-color: #86b7fe;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+  } */
+  
+}
+
+.songRequest { 
+  width: 20%;
 }
